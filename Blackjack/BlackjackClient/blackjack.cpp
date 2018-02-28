@@ -6,13 +6,23 @@ const int Blackjack::WINDOW_WIDTH = 512;
 
 Blackjack::Blackjack()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		print_error("Could not initiate SDL");
-		return;
-	}
-	print_success("Successfully initiated SDL");
+}
 
-	window_ = SDL_CreateWindow(
+
+Blackjack::~Blackjack()
+{
+}
+
+bool Blackjack::init()
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+	{
+		utilities::print_error("Could not initiate SDL");
+		return false;
+	}
+	utilities::print_success("Successfully initiated SDL");
+
+	window = SDL_CreateWindow(
 		"Blackjack",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
@@ -21,17 +31,45 @@ Blackjack::Blackjack()
 		NULL
 	);
 
-	renderer_ = SDL_CreateRenderer(
-		window_,
+	if (window == NULL)
+	{
+		utilities::print_error("Could not create window");
+		return false;
+	}
+	utilities::print_success("Successfully created window");
+
+	renderer = SDL_CreateRenderer(
+		window,
 		-1,
 		SDL_RENDERER_ACCELERATED |
 		SDL_RENDERER_PRESENTVSYNC
 	);
 
-	SDL_Quit();
+	if (renderer == NULL)
+	{
+		utilities::print_error("Could not create rendering context for window");
+		return false;
+	}
+	utilities::print_success("Successfully created rendering context for window");
+
+	running = true;
+
+	return true;
 }
 
+void Blackjack::execute()
+{
+	while (running)
+	{
+		update();
+		draw();
+	}
+}
 
-Blackjack::~Blackjack()
+void Blackjack::update()
+{
+}
+
+void Blackjack::draw()
 {
 }

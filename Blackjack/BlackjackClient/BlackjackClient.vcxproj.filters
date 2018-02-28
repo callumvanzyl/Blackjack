@@ -44,6 +44,9 @@
     <ClInclude Include="card_pool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="drawable_batch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="utilities.cpp">
@@ -53,9 +56,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="blackjack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="instance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="drawable.cpp">
@@ -71,6 +71,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="card_pool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawable_batch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

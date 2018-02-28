@@ -2,16 +2,26 @@
 
 #include <SDL.h>
 
+#include "drawable_batch.h"
+
 class Blackjack
 {
 public:
-	static const int WINDOW_HEIGHT;
-	static const int WINDOW_WIDTH;
-
 	Blackjack();
 	~Blackjack();
 
+	bool init();
+	void execute();
+	void update();
+	void draw();
 private:
-	SDL_Window* window_;
-	SDL_Renderer* renderer_;
+	static const int WINDOW_HEIGHT;
+	static const int WINDOW_WIDTH;
+
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+
+	DrawableBatch card_batch;
+
+	bool running;
 };
