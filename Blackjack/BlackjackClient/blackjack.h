@@ -21,7 +21,8 @@ private:
 	static const int WINDOW_HEIGHT;
 	static const int WINDOW_WIDTH;
 
-	Card my_card; // For testing
+	Card card1; // For testing
+	Card card2; // For testing
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

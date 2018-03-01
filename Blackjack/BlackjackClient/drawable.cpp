@@ -11,7 +11,6 @@ Drawable::~Drawable()
 
 void Drawable::draw(SDL_Renderer* renderer)
 {
-	dst_rect;
 	SDL_RenderCopy(renderer, texture, &src_rect, &dst_rect);
 }
 

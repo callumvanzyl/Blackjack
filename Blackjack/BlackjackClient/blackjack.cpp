@@ -4,6 +4,8 @@
 const int Blackjack::WINDOW_HEIGHT = 512;
 const int Blackjack::WINDOW_WIDTH = 512;
 
+double a = 0; // For testing
+
 Blackjack::Blackjack()
 {
 }
@@ -51,16 +53,23 @@ bool Blackjack::init()
 		return false;
 	}
 	utilities::print_success("Successfully created rendering context for window");
-
-	running = true;
 	
 	background.set_texture(renderer, "background.png");
 	
-	my_card.set_texture(renderer, "card.png");
-	my_card.set_x_pos(50);
-	my_card.set_y_pos(50);
+	card1.set_texture(renderer, "card.png");
+	card1.set_x_pos(100);
+	card1.set_y_pos(100);
 
-	card_batch.add_to_batch(my_card);
+	card2.set_texture(renderer, "card.png");
+	card2.set_width(50);
+	card2.set_height(75);
+	card2.set_x_pos(400);
+	card2.set_y_pos(400);
+
+	card_batch.add_to_batch(&card1);
+	card_batch.add_to_batch(&card2);
+
+	running = true;
 
 	return true;
 }
@@ -84,33 +93,16 @@ void Blackjack::input()
 		{
 			running = false;
 		}
-
-		if (event.type == SDL_KEYDOWN)
-		{
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_UP:
-				my_card.set_y_pos(my_card.get_y_pos() + 5);
-				break;
-			case SDLK_DOWN:
-				my_card.set_y_pos(my_card.get_y_pos() - 5);
-				break;
-			case SDLK_LEFT:
-				my_card.set_x_pos(my_card.get_x_pos() - 5);
-				break;
-			case SDLK_RIGHT:
-				my_card.set_x_pos(my_card.get_x_pos() + 5);
-				break;
-			case SDLK_ESCAPE:
-				running = false;
-				break;
-			}
-		}
 	}
 }
 
 void Blackjack::update()
 {
+	a += 0.1;
+	int x = cos(a) * 50;
+	int y = sin(a) * 50;
+	card1.set_x_pos(x);
+	card1.set_y_pos(y);
 }
 
 void Blackjack::draw()
