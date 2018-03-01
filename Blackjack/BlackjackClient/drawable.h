@@ -15,10 +15,25 @@ public:
 
 	void draw(SDL_Renderer* renderer);
 	void set_texture(SDL_Renderer* renderer, std::string path);
-	void set_x(int x);
-	void set_y(int y);
+
+	int get_width();
+	void set_width(int w);
+
+	int get_height();
+	void set_height(int h);
+
+	int get_x_pos();
+	void set_x_pos(int x);
+
+	int get_y_pos();
+	void set_y_pos(int y);
 private:
 	SDL_Texture* texture;
+	SDL_Rect src_rect;
+	SDL_Rect dst_rect;
+
+	int width, height;
+	int x_pos, y_pos;
 
 	bool active;
 };

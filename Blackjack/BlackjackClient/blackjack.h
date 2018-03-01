@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 
+#include "card.h"
 #include "drawable.h"
 #include "drawable_batch.h"
 
@@ -13,11 +14,14 @@ public:
 
 	bool init();
 	void execute();
+	void input();
 	void update();
 	void draw();
 private:
 	static const int WINDOW_HEIGHT;
 	static const int WINDOW_WIDTH;
+
+	Card my_card; // For testing
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

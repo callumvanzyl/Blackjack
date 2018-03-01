@@ -1,5 +1,4 @@
 #include "blackjack.h"
-#include "card.h"
 #include "utilities.h"
 
 const int Blackjack::WINDOW_HEIGHT = 512;
@@ -56,6 +55,12 @@ bool Blackjack::init()
 	running = true;
 	
 	background.set_texture(renderer, "background.png");
+	
+	my_card.set_texture(renderer, "card.png");
+	my_card.set_x_pos(50);
+	my_card.set_y_pos(50);
+
+	card_batch.add_to_batch(my_card);
 
 	return true;
 }
@@ -64,8 +69,43 @@ void Blackjack::execute()
 {
 	while (running)
 	{
+		input();
 		update();
 		draw();
+	}
+}
+
+void Blackjack::input()
+{
+	SDL_Event event;
+	if (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_QUIT)
+		{
+			running = false;
+		}
+
+		if (event.type == SDL_KEYDOWN)
+		{
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_UP:
+				my_card.set_y_pos(my_card.get_y_pos() + 5);
+				break;
+			case SDLK_DOWN:
+				my_card.set_y_pos(my_card.get_y_pos() - 5);
+				break;
+			case SDLK_LEFT:
+				my_card.set_x_pos(my_card.get_x_pos() - 5);
+				break;
+			case SDLK_RIGHT:
+				my_card.set_x_pos(my_card.get_x_pos() + 5);
+				break;
+			case SDLK_ESCAPE:
+				running = false;
+				break;
+			}
+		}
 	}
 }
 
