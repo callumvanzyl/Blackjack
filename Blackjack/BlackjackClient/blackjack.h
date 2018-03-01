@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 
+#include "drawable.h"
 #include "drawable_batch.h"
 
 class Blackjack
@@ -21,6 +22,7 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
+	Drawable background;
 	DrawableBatch card_batch;
 
 	bool running;

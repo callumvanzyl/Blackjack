@@ -3,6 +3,7 @@
 #include <string>
 
 #include <SDL.h>
+#include <SDL_image.h>
 
 #include "instance.h"
 
@@ -12,8 +13,8 @@ public:
 	Drawable();
 	~Drawable();
 
-	void draw();
-	void set_sprite(std::string path);
+	void draw(SDL_Renderer* renderer);
+	void set_texture(SDL_Renderer* renderer, std::string path);
 	void set_x(int x);
 	void set_y(int y);
 private:

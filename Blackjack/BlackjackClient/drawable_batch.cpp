@@ -13,10 +13,10 @@ void DrawableBatch::add_to_batch(Drawable object)
 	batch.push_back(object);
 }
 
-void DrawableBatch::draw_batch()
+void DrawableBatch::draw_batch(SDL_Renderer* renderer)
 {
 	for (std::vector<Drawable>::iterator it = batch.begin(); it != batch.end(); it++)
 	{
-		it->draw();
+		it->draw(renderer);
 	}
 }

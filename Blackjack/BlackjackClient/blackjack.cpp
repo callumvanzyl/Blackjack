@@ -1,4 +1,5 @@
 #include "blackjack.h"
+#include "card.h"
 #include "utilities.h"
 
 const int Blackjack::WINDOW_HEIGHT = 512;
@@ -53,6 +54,8 @@ bool Blackjack::init()
 	utilities::print_success("Successfully created rendering context for window");
 
 	running = true;
+	
+	background.set_texture(renderer, "background.png");
 
 	return true;
 }
@@ -72,4 +75,8 @@ void Blackjack::update()
 
 void Blackjack::draw()
 {
+	SDL_RenderClear(renderer);
+	background.draw(renderer);
+	card_batch.draw_batch(renderer);
+	SDL_RenderPresent(renderer);
 }
