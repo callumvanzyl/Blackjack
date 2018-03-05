@@ -17,22 +17,15 @@ Drawable::~Drawable()
 
 void Drawable::update()
 {
-	int x_current = get_x_pos();
-	int y_current = get_y_pos();
-
-	int x_dist = x_target - x_current;
-	int y_dist = y_target - y_current;
+	int x_dist = x_target - x_pos;
+	int y_dist = y_target - y_pos;
 
 	double angle = fmod(atan2(-y_dist, x_dist), PI * 2);
 
-	if (x_current != x_target)
+	if (x_pos != x_target || y_pos != y_target)
 	{
-		set_x_pos(x_current + (cos(angle) * TWEENING_SPEED));
-	}
-
-	if (y_current != y_target)
-	{
-		set_y_pos(y_current - (sin(angle) * TWEENING_SPEED));
+		set_x_pos(x_pos + (int)(cos(angle) * TWEENING_SPEED));
+		set_y_pos(y_pos - (int)(sin(angle) * TWEENING_SPEED));
 	}
 }
 
