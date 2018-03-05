@@ -12,11 +12,6 @@ bool is_valid_path(std::string path)
 	return t;
 }
 
-float normalise(int n, int i_min, int i_max, int o_min, int o_max)
-{
-	return (((n - i_min) / (i_max - i_min)) * (o_max - o_min) + o_min);
-}
-
 void print_colored_text(std::string text, TEXT_COLORS color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);

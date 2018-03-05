@@ -57,7 +57,7 @@ bool Blackjack::init()
 
 	my_card.set_texture(renderer, "card.png");
 
-	my_card.set_x_target(0);
+	my_card.set_x_target(150);
 	my_card.set_y_target(300);
 
 	running = true;

@@ -1,5 +1,9 @@
+#include <math.h>
+
 #include "drawable.h"
 #include "utilities.h"
+
+#define PI 3.14159265
 
 const int Drawable::TWEENING_SPEED = 5;
 
@@ -13,19 +17,22 @@ Drawable::~Drawable()
 
 void Drawable::update()
 {
-	int current_x = get_x_pos();
-	int current_y = get_y_pos();
+	int x_current = get_x_pos();
+	int y_current = get_y_pos();
 
-	if (current_x != x_target)
+	int x_dist = x_target - x_current;
+	int y_dist = y_target - y_current;
+
+	double angle = fmod(atan2(-y_dist, x_dist), PI * 2);
+
+	if (x_current != x_target)
 	{
-		float x_dir = normalise(x_target - current_x, 0, 512, -1, 1)*TWEENING_SPEED;
-		set_x_pos(current_x - (int)x_dir);
+		set_x_pos(x_current + (cos(angle) * TWEENING_SPEED));
 	}
 
-	if (current_y != y_target)
+	if (y_current != y_target)
 	{
-		float y_dir = normalise(y_target - current_y, 0, 512, -1, 1)*TWEENING_SPEED;
-		set_y_pos(current_y - (int)y_dir);
+		set_y_pos(y_current - (sin(angle) * TWEENING_SPEED));
 	}
 }
 
