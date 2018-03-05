@@ -15,18 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blackjack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="drawable.h">
@@ -38,10 +30,13 @@
     <ClInclude Include="deck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="card_pool.h">
+    <ClInclude Include="drawable_batch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="drawable_batch.h">
+    <ClInclude Include="player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -64,22 +59,14 @@
     <ClCompile Include="deck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="card_pool.cpp">
+    <ClCompile Include="drawable_batch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="instance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="drawable_batch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="background.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="card.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>

@@ -125,32 +125,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="blackjack.h" />
     <ClInclude Include="card.h" />
-    <ClInclude Include="card_pool.h" />
     <ClInclude Include="deck.h" />
     <ClInclude Include="drawable.h" />
     <ClInclude Include="drawable_batch.h" />
     <ClInclude Include="instance.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blackjack.cpp" />
     <ClCompile Include="card.cpp" />
-    <ClCompile Include="card_pool.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="drawable.cpp" />
     <ClCompile Include="drawable_batch.cpp" />
     <ClCompile Include="instance.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="utilities.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="background.png" />
-    <Image Include="card.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

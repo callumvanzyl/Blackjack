@@ -4,7 +4,6 @@
 
 #include "card.h"
 #include "drawable.h"
-#include "drawable_batch.h"
 
 class Blackjack
 {
@@ -21,14 +20,12 @@ private:
 	static const int WINDOW_HEIGHT;
 	static const int WINDOW_WIDTH;
 
-	Card card1; // For testing
-	Card card2; // For testing
-
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
 	Drawable background;
-	DrawableBatch card_batch;
+
+	Card my_card;
 
 	bool running;
 };

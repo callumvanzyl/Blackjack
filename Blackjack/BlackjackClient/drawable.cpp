@@ -1,12 +1,32 @@
 #include "drawable.h"
 #include "utilities.h"
 
+const int Drawable::TWEENING_SPEED = 5;
+
 Drawable::Drawable()
 {
 }
 
 Drawable::~Drawable()
 {
+}
+
+void Drawable::update()
+{
+	int current_x = get_x_pos();
+	int current_y = get_y_pos();
+
+	if (current_x != x_target)
+	{
+		float x_dir = normalise(x_target - current_x, 0, 512, -1, 1)*TWEENING_SPEED;
+		set_x_pos(current_x - (int)x_dir);
+	}
+
+	if (current_y != y_target)
+	{
+		float y_dir = normalise(y_target - current_y, 0, 512, -1, 1)*TWEENING_SPEED;
+		set_y_pos(current_y - (int)y_dir);
+	}
 }
 
 void Drawable::draw(SDL_Renderer* renderer)
@@ -16,10 +36,10 @@ void Drawable::draw(SDL_Renderer* renderer)
 
 void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 {
-	if (!utilities::is_valid_path(path))
+	if (!is_valid_path(path))
 	{
 		std::string text = "Could not load texture '" + path + "'";
-		utilities::print_error(text);
+		print_error(text);
 		return;
 	}
 
@@ -85,4 +105,14 @@ void Drawable::set_y_pos(int y)
 {
 	dst_rect.y = y;
 	y_pos = y;
+}
+
+void Drawable::set_x_target(int x)
+{
+	x_target = x;
+}
+
+void Drawable::set_y_target(int y)
+{
+	y_target = y;
 }
