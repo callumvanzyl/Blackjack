@@ -29,10 +29,7 @@ void Drawable::update()
 
 void Drawable::draw(SDL_Renderer* renderer)
 {
-	if (active)
-	{
-		SDL_RenderCopy(renderer, texture, &src_rect, &dst_rect);
-	}
+	SDL_RenderCopy(renderer, texture, &src_rect, &dst_rect);
 }
 
 void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
