@@ -8,15 +8,16 @@ DrawableBatch::~DrawableBatch()
 {
 }
 
-void DrawableBatch::add_to_batch(Drawable* object)
+void DrawableBatch::add_to_batch(Drawable object)
 {
 	batch.push_back(object);
+	int a = 0;
 }
 
 void DrawableBatch::draw_batch(SDL_Renderer* renderer)
 {
-	for (Drawable* v : batch)
+	for (Drawable v : batch)
 	{
-		v->draw(renderer);
+		v.draw(renderer);
 	}
 }

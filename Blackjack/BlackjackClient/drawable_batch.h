@@ -10,8 +10,8 @@ public:
 	DrawableBatch();
 	~DrawableBatch();
 
-	void add_to_batch(Drawable* object);
+	void add_to_batch(Drawable object);
 	void draw_batch(SDL_Renderer* renderer);
 private:
-	std::vector<Drawable*> batch;
+	std::vector<Drawable> batch;
 };

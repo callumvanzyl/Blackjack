@@ -1,5 +1,3 @@
-#include <math.h>
-
 #include "drawable.h"
 #include "utilities.h"
 
@@ -20,7 +18,7 @@ void Drawable::update()
 	int x_dist = x_target - x_pos;
 	int y_dist = y_target - y_pos;
 
-	double angle = fmod(atan2(-y_dist, x_dist), PI * 2);
+	double angle = SDL_fmod(atan2(-y_dist, x_dist), PI * 2);
 
 	if (x_pos != x_target || y_pos != y_target)
 	{
@@ -31,7 +29,10 @@ void Drawable::update()
 
 void Drawable::draw(SDL_Renderer* renderer)
 {
-	SDL_RenderCopy(renderer, texture, &src_rect, &dst_rect);
+	if (active)
+	{
+		SDL_RenderCopy(renderer, texture, &src_rect, &dst_rect);
+	}
 }
 
 void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
@@ -49,6 +50,9 @@ void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 
 	int w, h;
 	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+
+	width = w;
+	height = h;
 
 	src_rect.w = w;
 	src_rect.h = h;

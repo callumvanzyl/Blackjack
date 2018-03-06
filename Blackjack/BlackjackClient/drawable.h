@@ -36,6 +36,7 @@ private:
 	static const int TWEENING_SPEED;
 
 	SDL_Texture* texture;
+
 	SDL_Rect src_rect;
 	SDL_Rect dst_rect;
 

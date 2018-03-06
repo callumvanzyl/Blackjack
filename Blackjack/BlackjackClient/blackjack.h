@@ -2,8 +2,8 @@
 
 #include <SDL.h>
 
-#include "card.h"
 #include "drawable.h"
+#include "player.h"
 
 class Blackjack
 {
@@ -25,7 +25,8 @@ private:
 
 	Drawable background;
 
-	Card my_card;
+	Player player_one;
+	Player player_two;
 
 	bool running;
 };

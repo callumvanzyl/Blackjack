@@ -9,12 +9,12 @@ public:
 	Player();
 	~Player();
 
-	void add_to_hand(Card* card);
+	void add_to_hand(Card card);
 	void draw_hand(SDL_Renderer* renderer);
 private:
 	DrawableBatch card_batch;
 
-	std::vector<Card*> hand;
-
+	std::vector<Card> hand;
+	
 	int score;
 };

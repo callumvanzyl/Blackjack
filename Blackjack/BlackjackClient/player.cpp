@@ -8,7 +8,7 @@ Player::~Player()
 {
 }
 
-void Player::add_to_hand(Card* card)
+void Player::add_to_hand(Card card)
 {
 	card_batch.add_to_batch(card);
 	hand.push_back(card);
