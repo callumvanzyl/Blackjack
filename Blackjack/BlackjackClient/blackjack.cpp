@@ -54,9 +54,18 @@ bool Blackjack::init()
 	
 	background.set_texture(renderer, "background.png");
 	
-	Card test_card(CLUBS, 5);
-	test_card.set_texture(renderer, "card.png");
+	Card* test_card = new Card(SPADES, 10);
+	test_card->set_texture(renderer, "card.png");
+
+	Card* test_card2 = new Card(SPADES, 10);
+	test_card2->set_texture(renderer, "card.png");
+
+	player_one.set_hand_origin_x(20);
+	player_one.set_hand_origin_y(20);
+	player_one.set_spawn_height(-200);
+
 	player_one.add_to_hand(test_card);
+	player_one.add_to_hand(test_card2);
 
 	running = true;
 
@@ -87,6 +96,8 @@ void Blackjack::input()
 
 void Blackjack::update()
 {
+	player_one.update_hand();
+	player_two.update_hand();
 }
 
 void Blackjack::draw()

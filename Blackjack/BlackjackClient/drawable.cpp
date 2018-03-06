@@ -3,7 +3,7 @@
 
 #define PI 3.14159265
 
-const int Drawable::TWEENING_SPEED = 5;
+const int Drawable::TWEENING_SPEED = 10;
 
 Drawable::Drawable()
 {
