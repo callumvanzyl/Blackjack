@@ -7,7 +7,7 @@ const enum SUITS { CLUBS, DIAMONDS, HEARTS, SPADES };
 class Card : public Drawable
 {
 public:
-	Card(SUITS suit, int value);
+	Card(SDL_Renderer* renderer, SUITS suit, int value);
 	~Card();
 private:
 	SUITS suit;

@@ -17,8 +17,8 @@ void Player::add_to_hand(Card* card)
 
 	int x_pos = hand_origin_x + ((hand.size()-1) * CARD_GAP);
 
-	card->set_x_pos(x_pos);
-	card->set_y_pos(spawn_height);
+	card->set_x_pos(spawn_x);
+	card->set_y_pos(spawn_y);
 
 	card->set_x_target(x_pos);
 	card->set_y_target(hand_origin_y);
@@ -50,7 +50,12 @@ void Player::set_score(int new_score)
 	score = new_score;
 }
 
-void Player::set_spawn_height(int new_height)
+void Player::set_spawn_x(int new_x)
 {
-	spawn_height = new_height;
+	spawn_x = new_x;
+}
+
+void Player::set_spawn_y(int new_y)
+{
+	spawn_y = new_y;
 }

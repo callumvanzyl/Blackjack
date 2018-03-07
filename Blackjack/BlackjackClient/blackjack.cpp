@@ -1,8 +1,9 @@
 #include "blackjack.h"
+#include "card_factory.h"
 #include "utilities.h"
 
 const int Blackjack::WINDOW_HEIGHT = 512;
-const int Blackjack::WINDOW_WIDTH = 512;
+const int Blackjack::WINDOW_WIDTH = 1024;
 
 Blackjack::Blackjack()
 {
@@ -53,19 +54,27 @@ bool Blackjack::init()
 	print_success("Successfully created rendering context for window");
 	
 	background.set_texture(renderer, "background.png");
-	
-	Card* test_card = new Card(SPADES, 10);
-	test_card->set_texture(renderer, "card.png");
-
-	Card* test_card2 = new Card(SPADES, 10);
-	test_card2->set_texture(renderer, "card.png");
 
 	player_one.set_hand_origin_x(20);
 	player_one.set_hand_origin_y(20);
-	player_one.set_spawn_height(-200);
 
+	player_one.set_spawn_x(-200);
+	player_one.set_spawn_y(318);
+
+	player_two.set_hand_origin_x(20);
+	player_two.set_hand_origin_y(368);
+
+	player_two.set_spawn_x(-200);
+	player_two.set_spawn_y(318);
+
+	Card* test_card = create_card(renderer, SPADES, 10);
 	player_one.add_to_hand(test_card);
-	player_one.add_to_hand(test_card2);
+
+	Card* test_card2 = create_card(renderer, SPADES, 10);
+	player_two.add_to_hand(test_card2);
+
+	Card* test_card3 = create_card(renderer, SPADES, 10);
+	player_two.add_to_hand(test_card3);
 
 	running = true;
 

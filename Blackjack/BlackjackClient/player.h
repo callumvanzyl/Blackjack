@@ -16,7 +16,8 @@ public:
 	void set_hand_origin_x(int x);
 	void set_hand_origin_y(int y);
 	void set_score(int new_score);
-	void set_spawn_height(int new_height);
+	void set_spawn_x(int new_x);
+	void set_spawn_y(int new_y);
 private:
 	static const int CARD_GAP;
 
@@ -27,5 +28,6 @@ private:
 	int hand_origin_x;
 	int hand_origin_y;
 	int score;
-	int spawn_height;
+	int spawn_x;
+	int spawn_y;
 };

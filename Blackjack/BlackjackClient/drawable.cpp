@@ -20,10 +20,32 @@ void Drawable::update()
 
 	double angle = SDL_fmod(atan2(-y_dist, x_dist), PI * 2);
 
-	if (x_pos != x_target || y_pos != y_target)
+	if (x_target != x_pos)
 	{
-		set_x_pos(x_pos + (int)(cos(angle) * TWEENING_SPEED));
-		set_y_pos(y_pos - (int)(sin(angle) * TWEENING_SPEED));
+		int new_x = x_pos + (int)(cos(angle) * TWEENING_SPEED);
+		if (x_target > x_pos)
+		{
+			new_x = new_x > x_target ? x_target : new_x;
+		}
+		else
+		{
+			new_x = new_x < x_target ? x_target : new_x;
+		}
+		set_x_pos(new_x);
+	}
+
+	if (y_target != y_pos)
+	{
+		int new_y = y_pos - (int)(sin(angle) * TWEENING_SPEED);
+		if (y_target > y_pos)
+		{
+			new_y = new_y > y_target ? y_target : new_y;
+		}
+		else
+		{
+			new_y = new_y < y_target ? y_target : new_y;
+		}
+		set_y_pos(new_y);
 	}
 }
 

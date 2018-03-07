@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="blackjack.h" />
     <ClInclude Include="card.h" />
+    <ClInclude Include="card_factory.h" />
     <ClInclude Include="deck.h" />
     <ClInclude Include="drawable.h" />
     <ClInclude Include="drawable_batch.h" />
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="blackjack.cpp" />
     <ClCompile Include="card.cpp" />
+    <ClCompile Include="card_factory.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="drawable.cpp" />
     <ClCompile Include="drawable_batch.cpp" />
