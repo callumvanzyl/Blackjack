@@ -52,12 +52,14 @@ bool Blackjack::init()
 		return false;
 	}
 	print_success("Successfully created rendering context for window");
+
+	deck.populate(renderer);
 	
 	background.set_texture(renderer, "background.png");
 
-	deck.set_texture(renderer, "deck.png");
-	deck.set_x_pos(15);
-	deck.set_y_pos(199);
+	deck_image.set_texture(renderer, "deck.png");
+	deck_image.set_x_pos(15);
+	deck_image.set_y_pos(199);
 
 	shadow.set_texture(renderer, "shadow.png");
 
@@ -67,16 +69,13 @@ bool Blackjack::init()
 	player_one.set_spawn_x(20);
 	player_one.set_spawn_y(194);
 
-	Card* c = id_to_card(renderer, 15);
-	Card* c1 = create_card(renderer, DIAMONDS, 10);
-	player_one.add_to_hand(c);
-	player_one.add_to_hand(c1);
-
 	player_two.set_hand_origin_x(20);
 	player_two.set_hand_origin_y(368);
 
 	player_two.set_spawn_x(20);
 	player_two.set_spawn_y(194);
+
+	thread = new std::thread(&Blackjack::take_turn_thread, this);
 
 	running = true;
 
@@ -115,9 +114,22 @@ void Blackjack::draw()
 {
 	SDL_RenderClear(renderer);
 	background.draw(renderer);
-	deck.draw(renderer);
+	deck_image.draw(renderer);
 	player_one.draw_hand(renderer);
 	player_two.draw_hand(renderer);
 	shadow.draw(renderer);
 	SDL_RenderPresent(renderer);
+}
+
+void Blackjack::take_turn_thread()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		Card* new_card = deck.draw_random_card();
+		player_one.add_to_hand(new_card);
+		SDL_Delay(1000);
+		Card* new_card2 = deck.draw_random_card();
+		player_two.add_to_hand(new_card2);
+		SDL_Delay(1000);
+	}
 }
