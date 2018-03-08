@@ -24,6 +24,8 @@ private:
 	SDL_Renderer* renderer;
 
 	Drawable background;
+	Drawable deck;
+	Drawable shadow;
 
 	Player player_one;
 	Player player_two;

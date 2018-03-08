@@ -2,6 +2,7 @@
 
 #include "card.h"
 #include "drawable_batch.h"
+#include "utilities.h"
 
 class Player
 {

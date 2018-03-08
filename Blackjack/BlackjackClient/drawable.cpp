@@ -3,7 +3,7 @@
 
 #define PI 3.14159265
 
-const int Drawable::TWEENING_SPEED = 10;
+const int Drawable::TWEENING_SPEED = 7;
 
 Drawable::Drawable()
 {
@@ -84,6 +84,28 @@ void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 
 	dst_rect.x = 0;
 	dst_rect.y = 0;
+}
+
+void Drawable::set_src_w(int w)
+{
+	src_rect.w = w;
+	dst_rect.w = w;
+}
+
+void Drawable::set_src_h(int h)
+{
+	src_rect.h = h;
+	dst_rect.h = h;
+}
+
+void Drawable::set_src_x(int x)
+{
+	src_rect.x = x;
+}
+
+void Drawable::set_src_y(int y)
+{
+	src_rect.y = y;
 }
 
 int Drawable::get_width()

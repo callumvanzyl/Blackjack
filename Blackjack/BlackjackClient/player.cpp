@@ -1,6 +1,6 @@
 #include "player.h"
 
-const int Player::CARD_GAP = 120;
+const int Player::CARD_GAP = 42;
 
 Player::Player()
 {

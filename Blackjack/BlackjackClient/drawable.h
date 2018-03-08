@@ -18,6 +18,12 @@ public:
 
 	void set_texture(SDL_Renderer* renderer, std::string path);
 
+	void set_src_w(int w);
+	void set_src_h(int h);
+
+	void set_src_x(int x);
+	void set_src_y(int y);
+
 	int get_width();
 	void set_width(int w);
 

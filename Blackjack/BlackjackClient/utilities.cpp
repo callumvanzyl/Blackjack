@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 #include <windows.h>
 
 #include "utilities.h"
@@ -32,4 +34,10 @@ void print_warning(std::string text) // Prints yellow text to the CLI
 void print_success(std::string text) // Prints bright green text to the CLI
 {
 	print_colored_text(text, TEXT_COLORS::GOOD);
+}
+
+int random(int min, int max)
+{
+	srand(time(NULL));
+	return(rand() % (max - min + 1) + min);
 }
