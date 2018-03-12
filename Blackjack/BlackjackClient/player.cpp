@@ -22,16 +22,18 @@ void Player::add_to_hand(Card* card)
 
 	card->set_x_target(x_pos);
 	card->set_y_target(hand_origin_y);
+
+	score += card->get_value();
 }
 
-void Player::update_hand()
-{
-	card_batch.update_batch();
-}
-
-void Player::draw_hand(SDL_Renderer* renderer)
+void Player::draw(SDL_Renderer* renderer)
 {
 	card_batch.draw_batch(renderer);
+}
+
+void Player::update()
+{
+	card_batch.update_batch();
 }
 
 void Player::set_hand_origin_x(int new_x)
@@ -44,6 +46,10 @@ void Player::set_hand_origin_y(int new_y)
 	hand_origin_y = new_y;
 }
 
+int Player::get_score()
+{
+	return score;
+}
 
 void Player::set_score(int new_score)
 {

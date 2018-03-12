@@ -16,7 +16,7 @@ Blackjack::~Blackjack()
 
 bool Blackjack::init()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 	{
 		print_error("Could not initiate SDL");
 		return false;
@@ -63,17 +63,22 @@ bool Blackjack::init()
 
 	shadow.set_texture(renderer, "shadow.png");
 
+	won_splash.set_texture(renderer, "won.png");
+	lost_splash.set_texture(renderer, "lost.png");
+
 	player_one.set_hand_origin_x(20);
-	player_one.set_hand_origin_y(20);
+	player_one.set_hand_origin_y(368);
 
 	player_one.set_spawn_x(20);
 	player_one.set_spawn_y(194);
 
 	player_two.set_hand_origin_x(20);
-	player_two.set_hand_origin_y(368);
+	player_two.set_hand_origin_y(20);
 
 	player_two.set_spawn_x(20);
 	player_two.set_spawn_y(194);
+
+	state = TAKING_TURNS;
 
 	thread = new std::thread(&Blackjack::take_turn_thread, this);
 
@@ -106,8 +111,8 @@ void Blackjack::input()
 
 void Blackjack::update()
 {
-	player_one.update_hand();
-	player_two.update_hand();
+	player_one.update();
+	player_two.update();
 }
 
 void Blackjack::draw()
@@ -115,9 +120,20 @@ void Blackjack::draw()
 	SDL_RenderClear(renderer);
 	background.draw(renderer);
 	deck_image.draw(renderer);
-	player_one.draw_hand(renderer);
-	player_two.draw_hand(renderer);
+	player_one.draw(renderer);
+	player_two.draw(renderer);
 	shadow.draw(renderer);
+
+	if (state == WON)
+	{
+		won_splash.draw(renderer);
+	}
+
+	if (state == LOST)
+	{
+		lost_splash.draw(renderer);
+	}
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -127,9 +143,46 @@ void Blackjack::take_turn_thread()
 	{
 		Card* new_card = deck.draw_random_card();
 		player_one.add_to_hand(new_card);
+		if (player_one.get_score() == 21)
+		{
+			state = WON;
+		}
+		if (player_one.get_score() > 21)
+		{
+			state = LOST;
+		}
+
+		std::string text = ("Player score set to " + std::to_string(player_one.get_score()));
+		print_warning(text);
+
+		if (state != TAKING_TURNS)
+		{
+			SDL_Delay(5000);
+			running = false;
+		}
+
 		SDL_Delay(1000);
+
 		Card* new_card2 = deck.draw_random_card();
 		player_two.add_to_hand(new_card2);
+		if (player_two.get_score() == 21)
+		{
+			state = LOST;
+		}
+		if (player_two.get_score() > 21)
+		{
+			state = WON;
+		}
+
+		std::string text2 = ("Computer score set to " + std::to_string(player_two.get_score()));
+		print_warning(text2);
+
+		if (state != TAKING_TURNS)
+		{
+			SDL_Delay(5000);
+			running = false;
+		}
+
 		SDL_Delay(1000);
 	}
 }

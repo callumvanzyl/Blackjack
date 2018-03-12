@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include "deck.h"
 
 Deck::Deck()
@@ -10,6 +12,7 @@ Deck::~Deck()
 
 Card* Deck::draw_random_card()
 {
+	srand(time(NULL));
 	int i = rand() % cards.size();
 	Card* card = cards[i];
 	cards.erase(cards.begin() + i);

@@ -38,3 +38,8 @@ Card::Card(SDL_Renderer* renderer, SUITS new_suit, int new_value)
 Card::~Card()
 {
 }
+
+int Card::get_value()
+{
+	return value;
+}

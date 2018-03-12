@@ -8,6 +8,8 @@
 #include "drawable.h"
 #include "player.h"
 
+const enum GAME_STATE { LOST, TAKING_TURNS, WON };
+
 class Blackjack
 {
 public:
@@ -34,10 +36,15 @@ private:
 	Drawable deck_image;
 	Drawable shadow;
 
+	Drawable won_splash;
+	Drawable lost_splash;
+
 	Player player_one;
 	Player player_two;
 
 	std::thread* thread;
+
+	GAME_STATE state;
 
 	bool running;
 };
