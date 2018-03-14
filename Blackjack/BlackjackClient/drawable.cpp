@@ -67,23 +67,26 @@ void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 
-	int w, h;
-	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+	if (dst_rect.w == NULL && dst_rect.h == NULL)
+	{
+		int w, h;
+		SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 
-	width = w;
-	height = h;
+		width = w;
+		height = h;
 
-	src_rect.w = w;
-	src_rect.h = h;
+		src_rect.w = w;
+		src_rect.h = h;
 
-	dst_rect.w = w;
-	dst_rect.h = h;
+		dst_rect.w = w;
+		dst_rect.h = h;
 
-	src_rect.x = 0;
-	src_rect.y = 0;
+		src_rect.x = 0;
+		src_rect.y = 0;
 
-	dst_rect.x = 0;
-	dst_rect.y = 0;
+		dst_rect.x = 0;
+		dst_rect.y = 0;
+	}
 }
 
 void Drawable::set_src_w(int w)

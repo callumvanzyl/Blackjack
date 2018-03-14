@@ -3,7 +3,9 @@
 #include <thread>
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 
+#include "button.h"
 #include "deck.h"
 #include "drawable.h"
 #include "player.h"
@@ -42,9 +44,13 @@ private:
 	Player player_one;
 	Player player_two;
 
+	Button hit_button;
+	Button hold_button;
+
 	std::thread* thread;
 
 	GAME_STATE state;
 
 	bool running;
+	bool awaiting;
 };

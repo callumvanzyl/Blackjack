@@ -13,7 +13,7 @@ public:
 	Drawable();
 	~Drawable();
 
-	void update();
+	virtual void update();
 	void draw(SDL_Renderer* renderer);
 
 	void set_texture(SDL_Renderer* renderer, std::string path);

@@ -38,6 +38,6 @@ void print_success(std::string text) // Prints bright green text to the CLI
 
 int random(int min, int max)
 {
-	srand(time(NULL));
+	srand((int)time(NULL));
 	return(rand() % (max - min + 1) + min);
 }

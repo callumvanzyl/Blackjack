@@ -20,6 +20,8 @@ public:
 	void set_score(int new_score);
 	void set_spawn_x(int new_x);
 	void set_spawn_y(int new_y);
+
+	bool holding = false;
 private:
 	static const int CARD_GAP;
 
