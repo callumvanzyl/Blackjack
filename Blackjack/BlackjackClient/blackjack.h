@@ -3,7 +3,6 @@
 #include <thread>
 
 #include <SDL.h>
-#include <SDL_ttf.h>
 
 #include "button.h"
 #include "deck.h"
