@@ -167,6 +167,7 @@ void Blackjack::take_turn_thread()
 			awaiting = true;
 			while (true)
 			{
+				SDL_Delay(20);
 				if (hit_button.is_pressed())
 				{
 					SDL_Delay(100);
