@@ -15,15 +15,15 @@ Drawable::~Drawable()
 
 void Drawable::update()
 {
-	int x_dist = x_target - x_pos;
+	int x_dist = x_target - x_pos; // positional magnitudes
 	int y_dist = y_target - y_pos;
 
-	double angle = SDL_fmod(atan2(-y_dist, x_dist), PI * 2);
+	double angle = SDL_fmod(atan2(-y_dist, x_dist), PI * 2); // maths stuff
 
-	if (x_target != x_pos)
+	if (x_target != x_pos) 
 	{
-		int new_x = x_pos + (int)(cos(angle) * TWEENING_SPEED);
-		if (x_target > x_pos)
+		int new_x = x_pos + (int)(cos(angle) * TWEENING_SPEED); // more maths stuff
+		if (x_target > x_pos) // prevents movement overcompensation
 		{
 			new_x = new_x > x_target ? x_target : new_x;
 		}
@@ -56,7 +56,7 @@ void Drawable::draw(SDL_Renderer* renderer)
 
 void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 {
-	if (!is_valid_path(path))
+	if (!is_valid_path(path)) // make sure the texture actually exists
 	{
 		std::string text = "Could not load texture '" + path + "'";
 		print_error(text);
@@ -65,7 +65,7 @@ void Drawable::set_texture(SDL_Renderer* renderer, std::string path)
 
 	SDL_Surface* surface = IMG_Load(path.c_str());
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
-	SDL_FreeSurface(surface);
+	SDL_FreeSurface(surface); // surface to texture. drawing textures is faster than blitting surfaces.
 
 	if (dst_rect.w == NULL && dst_rect.h == NULL)
 	{

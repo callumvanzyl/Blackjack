@@ -16,33 +16,33 @@ Blackjack::~Blackjack()
 
 bool Blackjack::init()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
+	if (SDL_Init(SDL_INIT_VIDEO) == -1) // Attempt to initiate SDL video
 	{
 		print_error("Could not initiate SDL");
-		return false;
+		return false; // Quit if unsuccessful
 	}
 	print_success("Successfully initiated SDL");
 
-	window = SDL_CreateWindow(
+	window = SDL_CreateWindow( // Create a window
 		"Blackjack",
-		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED, // Centered on screen
 		SDL_WINDOWPOS_CENTERED,
 		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
-		NULL
+		NULL // No flags
 	);
 
-	if (window == NULL)
+	if (window == NULL) // Make sure the window was created
 	{
 		print_error("Could not create window");
 		return false;
 	}
 	print_success("Successfully created window");
 
-	renderer = SDL_CreateRenderer(
+	renderer = SDL_CreateRenderer( // Attach rendering context to window
 		window,
 		-1,
-		SDL_RENDERER_ACCELERATED |
+		SDL_RENDERER_ACCELERATED | // Flags to enable accelerated 2D rendering and VSync
 		SDL_RENDERER_PRESENTVSYNC
 	);
 
@@ -53,23 +53,23 @@ bool Blackjack::init()
 	}
 	print_success("Successfully created rendering context for window");
 
-	deck.populate(renderer);
+	deck.populate(renderer); // Add cards to deck object
 	
 	background.set_texture(renderer, "background.png");
 
-	deck_image.set_texture(renderer, "deck.png");
+	deck_image.set_texture(renderer, "deck.png"); // Image of the deck, no functional value
 	deck_image.set_x_pos(15);
 	deck_image.set_y_pos(199);
 
-	shadow.set_texture(renderer, "shadow.png");
+	shadow.set_texture(renderer, "shadow.png"); // Overlay
 
-	won_splash.set_texture(renderer, "won.png");
+	won_splash.set_texture(renderer, "won.png"); // Endgame splash screens
 	lost_splash.set_texture(renderer, "lost.png");
 
-	player_one.set_hand_origin_x(20);
+	player_one.set_hand_origin_x(20); // Set origin position of player hand (where cards originate)
 	player_one.set_hand_origin_y(368);
 
-	player_one.set_spawn_x(20);
+	player_one.set_spawn_x(20); // Set initial position of all cards added to hand
 	player_one.set_spawn_y(194);
 
 	player_two.set_hand_origin_x(20);
@@ -86,16 +86,16 @@ bool Blackjack::init()
 	hold_button.set_x_pos(345);
 	hold_button.set_y_pos(229);
 
-	state = TAKING_TURNS;
+	state = TAKING_TURNS; // Game state, when this is TAKING_TURNS, procedure in 'thread' will run.
 
-	thread = new std::thread(&Blackjack::take_turn_thread, this);
+	thread = new std::thread(&Blackjack::take_turn_thread, this); // Process players turns in a seperate thread
 
 	running = true;
 
 	return true;
 }
 
-void Blackjack::execute()
+void Blackjack::execute() // Start game loop
 {
 	while (running)
 	{
@@ -105,7 +105,7 @@ void Blackjack::execute()
 	}
 }
 
-void Blackjack::input()
+void Blackjack::input() // Process players input events (not buttons presses)
 {
 	SDL_Event event;
 	if (SDL_PollEvent(&event))
@@ -117,7 +117,7 @@ void Blackjack::input()
 	}
 }
 
-void Blackjack::update()
+void Blackjack::update() // Logical updates to data structures
 {
 	player_one.update();
 	player_two.update();
@@ -125,7 +125,7 @@ void Blackjack::update()
 	hold_button.update();
 }
 
-void Blackjack::draw()
+void Blackjack::draw() // Draw objects on the screen
 {
 	SDL_RenderClear(renderer);
 	background.draw(renderer);
@@ -139,7 +139,7 @@ void Blackjack::draw()
 	player_two.draw(renderer);
 	shadow.draw(renderer);
 
-	if (state == WON)
+	if (state == WON) // The player has won
 	{
 		won_splash.draw(renderer);
 	}
@@ -149,7 +149,7 @@ void Blackjack::draw()
 		lost_splash.draw(renderer);
 	}
 
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(renderer); // Copy current frame to screen
 }
 
 void Blackjack::take_turn_thread()
@@ -164,11 +164,11 @@ void Blackjack::take_turn_thread()
 
 		if (!player_one.holding)
 		{
-			awaiting = true;
+			awaiting = true; // Is false when the player has pressed a button
 			while (true)
 			{
-				SDL_Delay(20);
-				if (hit_button.is_pressed())
+				SDL_Delay(20); // Prevents massive CPU usage
+				if (hit_button.is_pressed()) // If hit button was pressed...
 				{
 					SDL_Delay(100);
 					awaiting = false;

@@ -8,11 +8,11 @@ Card::Card(SDL_Renderer* renderer, SUITS new_suit, int new_value)
 	suit = new_suit;
 	value = new_value;
 
-	this->set_texture(renderer, "cards.png");
+	this->set_texture(renderer, "cards.png"); // TODO: dont load duplicate spritesheet into memory every time a card is instantised
 
 	int suit_value;
 
-	switch (suit)
+	switch (suit) // For fetching image on sprite sheet
 	{
 	case(CLUBS):
 		suit_value = 0;
@@ -31,8 +31,8 @@ Card::Card(SDL_Renderer* renderer, SUITS new_suit, int new_value)
 	set_src_w(CARD_WIDTH);
 	set_src_h(CARD_HEIGHT);
 
-	set_src_x(CARD_WIDTH*(value - 1));
-	set_src_y(CARD_HEIGHT*suit_value);
+	set_src_x(CARD_WIDTH*(value - 1)); // Get image on sprite sheet
+	set_src_y(CARD_HEIGHT*suit_value); 
 }
 
 Card::~Card()

@@ -10,20 +10,20 @@ Player::~Player()
 {
 }
 
-void Player::add_to_hand(Card* card)
+void Player::add_to_hand(Card* card) // add a card to hand and set its positions and stuff
 {
 	card_batch.add_to_batch(card);
 	hand.push_back(card);
 
-	int x_pos = hand_origin_x + ((hand.size()-1) * CARD_GAP);
+	int x_pos = hand_origin_x + ((hand.size()-1) * CARD_GAP); // so the card positions itself properly
 
 	card->set_x_pos(spawn_x);
 	card->set_y_pos(spawn_y);
 
-	card->set_x_target(x_pos);
+	card->set_x_target(x_pos); // the card will move towards the target position
 	card->set_y_target(hand_origin_y);
 
-	score += card->get_value();
+	score += card->get_value(); // add card value to score
 }
 
 void Player::draw(SDL_Renderer* renderer)
